@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>How does Tutor work? &#8212; Open edx documentation 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/groundwork.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Installing Tutor" href="Installing_Tutor.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="Installing_Tutor.html" title="Installing Tutor"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Open edx documentation 0.0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">How does Tutor work?</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="how-does-tutor-work">
+<span id="id1"></span><h1>How does Tutor work?<a class="headerlink" href="#how-does-tutor-work" title="Permalink to this headline">¶</a></h1>
+<p>Tutor is a piece of software that takes care of exactly three things:</p>
+<ol class="arabic simple">
+<li><p>Project configuration: user-specific settings (such as secrets) are stored in a single <code class="docutils literal notranslate"><span class="pre">config.yml</span></code> file.</p></li>
+<li><p>Template rendering: all the files that are necessary to run your platform are generated from a set of templates and user-specific settings.</p></li>
+<li><p>Command-line interface (CLI): frequently-used administration commands are gathered in a convenient, unified CLI.</p></li>
+</ol>
+<p>You can experiment with Tutor very quickly: start by installing Tutor. Then run:</p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">tutor</span> <span class="pre">config</span> <span class="pre">save</span> <span class="pre">--interactive</span></code></p>
+<p>Then, to view the result of the above command:</p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">cd</span> <span class="pre">&quot;$(tutor</span> <span class="pre">config</span> <span class="pre">printroot)&quot;</span></code>
+<code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">ls</span></code>
+<code class="docutils literal notranslate"><span class="pre">config.yml</span>&#160; <span class="pre">env</span></code></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">config.yml</span></code> file contains your user-specific Open edX settings (item #1 above). The <code class="docutils literal notranslate"><span class="pre">env/</span></code> folder contains the rendered templates which will be used to run your Open edX platform (item #2). For instance, the <code class="docutils literal notranslate"><span class="pre">env/local</span></code> folder contains the <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> file to run Open edX locally.</p>
+<p>The values from <code class="docutils literal notranslate"><span class="pre">config.yml</span></code> are used to generate the environment files in <code class="docutils literal notranslate"><span class="pre">env/</span></code>. As a consequence, <strong>every time the values from ``config.yml`` are modified, the environment must be regenerated</strong> with <code class="docutils literal notranslate"><span class="pre">tutor</span> <span class="pre">config</span> <span class="pre">save</span></code>..</p>
+<p>Because the Tutor environment is generated entirely from the values in <code class="docutils literal notranslate"><span class="pre">config.yml</span></code>, you can <code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">-rf</span></code> the <code class="docutils literal notranslate"><span class="pre">env/</span></code> folder at any time and re-create it with <code class="docutils literal notranslate"><span class="pre">tutor</span> <span class="pre">config</span> <span class="pre">save</span></code>. Another consequence is that <strong>any manual change made to a file in ``env/`` will be overwritten by ``tutor config save`` commands.</strong> Consider yourself warned!</p>
+<p>You can now take advantage of the Tutor-powered CLI (item #3) to bootstrap your Open edX platform:</p>
+<p><code class="docutils literal notranslate"><span class="pre">tutor</span> <span class="pre">local</span> <span class="pre">launch</span></code></p>
+<p>Under the hood, Tutor simply runs <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> and <code class="docutils literal notranslate"><span class="pre">docker</span></code> commands to launch your platform. These commands are printed in the standard output, such that you are free to replicate the same behaviour by simply copying/pasting the same commands.</p>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="Installing_Tutor.html"
+                        title="previous chapter">Installing Tutor</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/How_does_Tutor_work.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="Installing_Tutor.html" title="Installing Tutor"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Open edx documentation 0.0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">How does Tutor work?</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2024, Gauri Agarwal.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+    </div>
+  </body>
+</html>

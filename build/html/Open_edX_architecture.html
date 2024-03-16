@@ -1,0 +1,213 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Open edX architecture &#8212; Open edx documentation 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/groundwork.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Should I use Open edX?" href="Should_I_use_Open_edX.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="Should_I_use_Open_edX.html" title="Should I use Open edX?"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Open edx documentation 0.0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Open edX architecture</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="open-edx-architecture">
+<span id="id1"></span><h1>Open edX architecture<a class="headerlink" href="#open-edx-architecture" title="Permalink to this headline">¶</a></h1>
+<p>The centerpiece of the Open edX architecture is <a class="reference external" href="https://github.com/openedx/edx-platform">edx-platform</a>, which contains the learning management and course authoring applications (LMS and Studio, respectively).</p>
+<p>This service is supported by a collection of other autonomous web services called independently deployed applications (IDAs). Over time, edX plans to break out more of the existing edx-platform functions into new IDAs. This strategy will help manage the complexity of the edx-platform code base to make it as easy as possible for developers to approach and contribute to the project.</p>
+<a class="reference internal image-reference" href="_images/architecture.png"><img alt="Open edX architecture image" class="align-center" src="_images/architecture.png" style="width: 75%;" /></a>
+<p>Almost all of the server-side code in the Open edX project is in <a class="reference external" href="https://www.python.org/">Python</a>, with <a class="reference external" href="https://www.djangoproject.com/">Django</a> as the web application framework.</p>
+<section id="key-components">
+<h2>Key Components<a class="headerlink" href="#key-components" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><dl>
+<dt>Learning Management System (LMS)</dt><dd><p>The LMS is the most visible part of the Open edX project. Learners take courses using the LMS. The LMS also provides an instructor dashboard that users who have the Admin or Staff role can access by selecting Instructor.</p>
+<a class="reference internal image-reference" href="_images/lms.png"><img alt="lms illustrating image" class="align-center" src="_images/lms.png" style="width: 45%;" /></a>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Instructor View:</dt><dd><p>As an instructor, the Open edX Learning Management System (LMS) is the central hub where you manage your courses. The LMS provides an instructor dashboard that allows you to publish courses, post discussion boards, manage teams and cohorts, edit grades, and communicate with learners. The LMS uses a combination of data stores to support its functionalities, with courses stored in <a class="reference external" href="https://www.mongodb.com/">MongoDB</a>, videos served through external platforms like YouTube or Amazon S3, and per-learner data stored in <a class="reference external" href="https://www.mysql.com/">MySQL</a>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Learner View:</dt><dd><p>As a learner, the Open edX Learning Management System (LMS) is the central hub where you access your courses and interact with course content. You can access your profile, check your enrollment status, and browse courses via your learner dashboard. The LMS uses a combination of data stores to support its functionalities, with courses stored in MongoDB, videos served through external platforms like YouTube or Amazon S3, and per-learner data stored in MySQL. As you interact with the courses, the LMS captures your activities and publishes them as events to the analytics pipeline for collection, analysis, and reporting.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Features:</dt><dd><p>The Open edX Learning Management System (LMS) provides access to course content and supporting infrastructure for both instructors and learners. It equally supports online courses, online campuses, and online degree programs. The LMS is available for desktop, iOS, and Android versions, providing flexibility in accessing course content. The customizable learner experience reflects your unique brand identity and preferences, with features such as schedules, discussion boards, collaboration tools, student administration, certificate generation, messaging, and more. As learners interact with the courses, the LMS captures their activities and publishes them as events to the analytics pipeline for collection, analysis, and reporting, providing valuable insights into learner behavior and course performance.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl>
+<dt>1.1. Front End</dt><dd><p>The front-end of the Open edX Learning Management System (LMS) is responsible for the user interface that learners and instructors interact with. It includes the layout, design, and functionality of the platform that enables learners to access courses, navigate through the course materials, interact with the instructors and other learners, and track their progress.</p>
+<p>The Open edX LMS front-end is built using a combination of technologies such as <a class="reference external" href="http://www.makotemplates.org/">Mako</a> for server-side code, JavaScript and <a class="reference external" href="http://coffeescript.org/">CoffeeScript</a> for browser-side code, and <a class="reference external" href="http://sass-lang.com/">Sass</a> and the <a class="reference external" href="http://bourbon.io/">Bourbon framework</a> for CSS code. The client-side code uses the <a class="reference external" href="http://backbonejs.org/">Backbone.js</a> framework, which is a popular JavaScript framework used for building single-page web applications. The use of Backbone.js enables the platform to handle complex interactions and dynamic content, providing a seamless user experience for learners and instructors.</p>
+<p>The front-end of the Open edX LMS is highly customizable, allowing instructors to tailor the platform to meet their specific needs. The platform provides a range of features such as schedules, discussion boards, collaboration tools, student administration, certificate generation, messaging, and more. These features are designed to enhance the learner experience and help instructors manage their courses more efficiently.</p>
+<p>The Open edX project has a comprehensive documentation site that includes information about the front-end technology stack, as well as tutorials and guides for developers who want to customize and extend the platform. Additionally, there are many online resources available for those who want to learn more about front-end web development, JavaScript frameworks, and CSS frameworks like Sass and Bourbon.</p>
+</dd>
+<dt>1.2. Course Browsing</dt><dd><p>The Open edX project provides a simple front page for browsing courses. The <a class="reference external" href="http://edx.org/">edx.org</a> site has a separate home page and course discovery site that is not open source.</p>
+</dd>
+<dt>1.3. Course Structure</dt><dd><p>Open edX courses are composed of units called <a class="reference external" href="https://edx.readthedocs.io/projects/xblock-tutorial/en/latest/index.html#open-edx-xblock-tutorial">XBlocks</a>. Anyone can write new XBlocks, allowing educators and technologists to extend the set of components for their courses. The edX platform also still contains several XModules, the precursors to XBlocks. EdX is working to rewrite the existing XModules as XBlocks and remove XModules from our code base.</p>
+<p>In addition to XBlocks, there are a few ways to extend course behavior:</p>
+<ul class="simple">
+<li><p>The LMS is an LTI tool consumer. Course authors can embed LTI tools to integrate other learning tools into an Open edX course.</p></li>
+<li><p>Problems can use embedded Python code to either present the problem or assess the learner’s response. Instructor-written Python code is  executed in a secure environment called CodeJail.</p></li>
+<li><p>JavaScript components can be integrated using JS Input.</p></li>
+<li><p>Courses can be exported and imported using OLX (open learning XML), an XML- based format for courses.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>Studio</dt><dd><p>Studio is the course authoring environment. Course teams use it to create and update courses. Studio writes its courses to the same Mongo database that the LMS uses.</p>
+<a class="reference internal image-reference" href="_images/studio.png"><img alt="studio illustrating image" class="align-center" src="_images/studio.png" style="width: 45%;" /></a>
+<ul class="simple">
+<li><p>Author courses and evolve your content while live with learners</p></li>
+<li><p>Manage your course schedule, course team, and grading policy</p></li>
+<li><p>Utilize documented and open XML standards (OLX) for import/export of courses.</p></li>
+<li><p>Easily import content and manage content across platforms.</p></li>
+<li><p>Access rich 3rd-party tools or add additional building blocks</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>Discussions</dt><dd><p>Course discussions are managed by an IDA called comments (also called forums). comments is one of the few non-Python components, written in <a class="reference external" href="https://www.ruby-lang.org/en/">Ruby</a> using the <a class="reference external" href="http://www.sinatrarb.com/">Sinatra</a> framework. The LMS uses an API provided by the comments service to integrate discussions into the learners’ course experience.</p>
+<p>The comments service includes a notifier process that sends learners notifications about updates in topics of interest.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Mobile Apps</dt><dd><p>The Open edX project includes a mobile application, available for iOS and Android, that allows learners to watch course videos and more. EdX is actively enhancing the mobile app.</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>Analytics</dt><dd><p>Open edX Insights provides intelligent, learner-centric analytics to help instructors understand how learners engage with course material.</p>
+<ul class="simple">
+<li><p>Designed to support millions of users, Open edX Insights scales along with your learning program.</p></li>
+<li><p>Built-in reports help instructors and course teams manage online content for cohorts of any size.</p></li>
+<li><p>Learning teams can leverage existing data to build custom adaptive content and store data in a warehouse or learning record store (LRS).</p></li>
+</ul>
+<p>Events describing learner behavior are captured by the Open edX analytics pipeline. The events are stored as JSON in S3, processed using Hadoop, and then digested, aggregated results are published to MySQL. Results are made available via a REST API to Insights, an IDA that instructors and administrators use to explore data that lets them know what their learners are doing and how their courses are being used.</p>
+<img alt="edx analytics pipeline structure" src="_images/analytics_pipeline.png" />
+<p>At the center of the architecture is the edX analytics pipeline, which is responsible for collecting, processing, and storing data from various sources, such as user interactions with the edX platform, course content, and assessments. This data is then used to generate insights and reports that help instructors and administrators understand learner behavior, course effectiveness, and other metrics related to the performance of their courses.</p>
+<p>The data is collected by various components of the platform, such as the edX LMS (Learning Management System), which manages the delivery of course content and assessments, and the edX Insights API, which provides access to data collected by the edX analytics pipeline.</p>
+<p>The collected data is processed by various analytical tools, such as Hadoop, Spark, and Hive, which are used to store and process large amounts of data efficiently. The processed data is then stored in various data stores, such as MongoDB, MySQL, and ElasticSearch, which provide fast and efficient access to the data for analysis and reporting.</p>
+<p>The architecture also includes various reporting and visualization tools, such as Jupyter Notebook, which is used to create interactive reports and visualizations of the data. These reports and visualizations can be accessed by instructors and administrators through the edX Insights Dashboard, which provides a unified view of the analytics data for their courses</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>Background Work</dt><dd><p>A number of tasks are large enough that they are performed by separate background workers, rather than in the web applications themselves. This work is queued and distributed using <a class="reference external" href="http://www.celeryproject.org/">Celery</a> and <a class="reference external" href="http://www.rabbitmq.com/">RabbitMQ</a>. Examples of queued work include:</p>
+<ul class="simple">
+<li><p>Grading entire courses</p></li>
+<li><p>Sending bulk emails (with Amazon SES)</p></li>
+<li><p>Generating answer distribution reports</p></li>
+<li><p>Producing end-of-course certificates</p></li>
+</ul>
+<p>The Open edX project includes an IDA called XQueue that can run custom graders. These are separate processes that run compute-intensive assessments of learners’ work.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Search</dt><dd><p>The Open edX project uses <a class="reference external" href="https://www.elastic.co/">Elasticsearch</a> for searching in multiple contexts, including course search and the comments service.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Other Components</dt><dd><p>In addition to the components detailed above, the Open edX project also has services for other capabilities, such as one that manages e-commerce functions like order work flows and coupons.</p>
+</dd>
+</dl>
+</li>
+</ol>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Open edX architecture</a><ul>
+<li><a class="reference internal" href="#key-components">Key Components</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="Should_I_use_Open_edX.html"
+                        title="previous chapter">Should I use Open edX?</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/Open_edX_architecture.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="Should_I_use_Open_edX.html" title="Should I use Open edX?"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Open edx documentation 0.0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Open edX architecture</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2024, Gauri Agarwal.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+    </div>
+  </body>
+</html>

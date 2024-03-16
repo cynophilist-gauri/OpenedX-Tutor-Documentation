@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>How do I navigate Tutor’s command-line interface? &#8212; Open edx documentation 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/groundwork.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="How does Tutor work?" href="How_does_Tutor_work.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="How_does_Tutor_work.html" title="How does Tutor work?"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Open edx documentation 0.0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">How do I navigate Tutor’s command-line interface?</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="how-do-i-navigate-tutors-command-line-interface">
+<span id="id1"></span><h1>How do I navigate Tutor’s command-line interface?<a class="headerlink" href="#how-do-i-navigate-tutors-command-line-interface" title="Permalink to this headline">¶</a></h1>
+<p>Tutor commands are structured in an easy-to-follow hierarchy. At the top level, there are command trees for image and configuration management:</p>
+<p><code class="docutils literal notranslate"><span class="pre">tutor</span> <span class="pre">config</span> <span class="pre">...</span></code>
+<code class="docutils literal notranslate"><span class="pre">tutor</span> <span class="pre">images</span> <span class="pre">...</span></code></p>
+<p>as well as command trees for each mode in which Tutor can run:</p>
+<p><code class="docutils literal notranslate"><span class="pre">tutor</span> <span class="pre">local</span> <span class="pre">...</span></code>  # Commands for managing a local Open edX deployment.
+<code class="docutils literal notranslate"><span class="pre">tutor</span> <span class="pre">k8s</span> <span class="pre">...</span></code>    # Commands for managing a Kubernetes Open edX deployment.
+<code class="docutils literal notranslate"><span class="pre">tutor</span> <span class="pre">dev</span> <span class="pre">...</span></code>    # Commands for hacking on Open edX in development mode.</p>
+<p>Within each mode, Tutor has subcommands for managing that type of Open edX instance. Many of them are common between modes, such as <code class="docutils literal notranslate"><span class="pre">launch,</span> <span class="pre">start,</span> <span class="pre">stop,</span> <span class="pre">exec,</span> <span class="pre">``and</span> <span class="pre">``logs</span></code>. For example:</p>
+<p><code class="docutils literal notranslate"><span class="pre">tutor</span> <span class="pre">local</span> <span class="pre">logs</span></code>  # View logs of a local deployment.
+<code class="docutils literal notranslate"><span class="pre">tutor</span> <span class="pre">k8s</span> <span class="pre">logs</span></code>    # View logs of a Kubernetes-managed deployment.
+<code class="docutils literal notranslate"><span class="pre">tutor</span> <span class="pre">dev</span> <span class="pre">logs</span></code>    # View logs of a development platform.</p>
+<p>Many commands can be further parameterized to specify their target and options, for example:</p>
+<p><code class="docutils literal notranslate"><span class="pre">tutor</span> <span class="pre">local</span> <span class="pre">logs</span> <span class="pre">cms</span></code>          # View logs of the CMS container in a local deployment.
+<code class="docutils literal notranslate"><span class="pre">tutor</span> <span class="pre">k8s</span> <span class="pre">logs</span> <span class="pre">mysql</span></code>          # View logs of MySQL in Kubernetes-managed deployment.
+<code class="docutils literal notranslate"><span class="pre">tutor</span> <span class="pre">dev</span> <span class="pre">logs</span> <span class="pre">lms</span> <span class="pre">--tail</span> <span class="pre">10</span></code>  # View ten lines of logs of the LMS container in development mode.</p>
+<p>And that’s it! You do not need to understand Tutor’s entire command-line interface to get started. Using the <code class="docutils literal notranslate"><span class="pre">--help</span></code> option that’s availble on every command, it is easy to learn as you go. For an in-depth guide, you can also explore the <a class="reference external" href="https://docs.tutor.overhang.io/reference/index.rst">CLI Reference</a>.</p>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="How_does_Tutor_work.html"
+                        title="previous chapter">How does Tutor work?</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/How_do_I_navigate_Tutor’s_command-line_interface.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="How_does_Tutor_work.html" title="How does Tutor work?"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Open edx documentation 0.0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">How do I navigate Tutor’s command-line interface?</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2024, Gauri Agarwal.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+    </div>
+  </body>
+</html>
